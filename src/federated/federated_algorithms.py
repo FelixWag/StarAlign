@@ -14,6 +14,8 @@ def fed_avg(server, clients, equal_weighting=False):
             if equal_weighting:
                 w_avg[k] = sum(c.model_weights[k] for _, c in clients.items()) / len(clients)
             else:
+                # First set to zero in order to compute the weighted average
+                w_avg[k] = torch.zeros_like(w_avg[k])
                 for _, c in clients.items():
                     if 'num_batches_tracked' in k:
                         # Num_batches_tracked is a single scalar that increments by 1 every time forward is
