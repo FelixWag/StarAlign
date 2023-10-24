@@ -16,7 +16,7 @@ def format_per_class_accuracy(confusion_matrix):
         logging.info(f"Per-Class: Class {class_idx}: Accuracy = {accuracy:.2%}")
     # Log overall accuracy
     logging.info('-' * 50)
-    logging.info(f"Overall accuracy: {torch.mean((confusion_matrix.diag() / confusion_matrix.sum(1))):.2%}")
+    logging.info(f"Overall accuracy: {(confusion_matrix.diag() / confusion_matrix.sum()):.2%}")
 
 
 def evaluate_model(model, dataloader, device, num_classes, loss_fun=nn.CrossEntropyLoss()):
