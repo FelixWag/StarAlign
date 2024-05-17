@@ -107,7 +107,7 @@ def apply_average_gradient_step(model, optimizer, average_grads):
     model.zero_grad()
     # Apply the gradient to all the gradients in the model
     for name, param in model.named_parameters():
-        param.grad = average_grads[name]
+        param.grad = copy.deepcopy(average_grads[name])
 
     # Now make a gradient step
     optimizer.step()
